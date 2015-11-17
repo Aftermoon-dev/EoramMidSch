@@ -40,3 +40,7 @@ http://www.gnu.org/licenses/gpl-3.0-standalone.html
 For more details about Third Patry Notices, please read "NOTICES.txt"
 제 3자 고지사항에 대한 자세한 정보는, "NOTICES.txt"를 읽어주세요.
 
+====================
+
+Download This Application in Google Play Store!
+https://play.google.com/store/apps/details?id=com.seven.emsmeals
