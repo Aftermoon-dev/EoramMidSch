@@ -26,6 +26,7 @@ public class BootReceiver extends BroadcastReceiver {
             if(MealChk == true || SchChk == true)
             {
                 Intent i = new Intent(context, AlarmService.class);
+                intent.setPackage("com.seven.emsmeals");
                 context.startService(i);
             }
         }

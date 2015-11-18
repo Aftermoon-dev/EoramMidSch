@@ -119,11 +119,13 @@ public class AlarmService extends Service {
         PendingIntent sender; // Sender (알람 후 동작 전송 )
 
         Intent meal = new Intent("com.seven.emsmeals.mealalarm");
+        meal.setPackage("com.seven.emsmeals");
         sender = PendingIntent.getBroadcast(this, 0, meal, 0);
         alarm.cancel(sender);
         sender.cancel();
 
         Intent sch = new Intent("com.seven.emsmeals.schalarm");
+        sch.setPackage("com.seven.emsmeals");
         sender = PendingIntent.getBroadcast(this, 1, sch, 0);
         alarm.cancel(sender);
         sender.cancel();

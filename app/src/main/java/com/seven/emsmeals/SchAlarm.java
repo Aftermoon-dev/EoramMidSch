@@ -88,7 +88,6 @@ public class SchAlarm extends BroadcastReceiver {
                             manager.notify(2, scha.build());
                         }
                     }
-                    Log.d("Alarm", "일정 없음");
                 }
             }
         }

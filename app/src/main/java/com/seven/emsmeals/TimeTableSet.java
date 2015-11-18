@@ -137,7 +137,7 @@ public class TimeTableSet extends ActionBarActivity {
         Log.d("timetable", "onBackPressed");
         SaveData();
         finish();
-        Intent intent = new Intent(TimeTableSet.this, MainActivity.class);
+        Intent intent = new Intent(TimeTableSet.this, SettingActivity.class);
         startActivity(intent);
         return;
     }

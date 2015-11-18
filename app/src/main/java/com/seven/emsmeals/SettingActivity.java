@@ -1,39 +1,70 @@
 package com.seven.emsmeals;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.sql.Time;
 
 
 public class SettingActivity extends ActionBarActivity {
-    boolean MealChk, SchChk;
-    int MealHour, MealMinute, SchHour, SchMinute;
-    int SMealHour, SMealMinute, SSchHour, SSchMinute;
-    int AlarmDaySet;
+    boolean MealChk; // 급식 알림 여부
+    boolean SchChk; // 일정 알림 여부
+    int MealHour; // 급식 알림 시간
+    int MealMinute; // 급식 알림 분
+    int SchHour; // 일정 알림 시간
+    int SchMinute; // 일정 알림 분
+    int AlarmDaySet; // 오늘 기준 알림인지, 내일 기준 알림인지 설정.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        CheckBox MealChks = (CheckBox) findViewById(R.id.mealchk);
-        CheckBox SchChks = (CheckBox) findViewById(R.id.schchk);
+        CheckBox MealChks = (CheckBox) findViewById(R.id.mealchk); // 급식알림 온오프 체크박스
+        CheckBox SchChks = (CheckBox) findViewById(R.id.schchk); // 일정알림 온오프 체크박스
         final CheckBox TodayAlarmSet = (CheckBox) findViewById(R.id.todayalarmset);
         final CheckBox TomoAlarmSet = (CheckBox) findViewById(R.id.tomoalarmset);
-        TimePicker MealTime = (TimePicker) findViewById(R.id.mealtime);
-        TimePicker SchTime = (TimePicker) findViewById(R.id.schtime);
+        CardView mealtimeset = (CardView) findViewById(R.id.MealTimeSet);
+        CardView schtimeset = (CardView) findViewById(R.id.SchTimeSet);
+        CardView timetableset = (CardView) findViewById(R.id.TimeTableSet);
 
         getPreferences();
+
+        mealtimeset.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(SettingActivity.this, MealTimeSetListener, MealHour, MealMinute, false).show();
+            }
+        });
+
+        schtimeset.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(SettingActivity.this, SchTimeSetListener, SchHour, SchMinute, false).show();
+            }
+        });
+
+        timetableset.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(SettingActivity.this, TimeTableSet.class);
+                startActivity(intent);
+            }
+        });
 
         if(MealChk == true)
         {
@@ -63,34 +94,6 @@ public class SettingActivity extends ActionBarActivity {
             TodayAlarmSet.setChecked(false);
             TomoAlarmSet.setChecked(true);
         }
-
-        SMealHour = MealHour;
-        SMealMinute = MealMinute;
-        SSchHour = SchHour;
-        SSchMinute = SchMinute;
-
-        MealTime.setCurrentHour(MealHour);
-        MealTime.setCurrentMinute(MealMinute);
-        SchTime.setCurrentHour(SchHour);
-        SchTime.setCurrentMinute(SchMinute);
-
-        //급식 알림시간
-        MealTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
-            {
-                SMealHour = hourOfDay;
-                SMealMinute = minute;
-            }
-        });
-
-        //일정 알림시간
-        SchTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute)
-            {
-                SSchHour = hourOfDay;
-                SSchMinute = minute;
-            }
-        });
 
         MealChks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
@@ -136,18 +139,35 @@ public class SettingActivity extends ActionBarActivity {
         });
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    private TimePickerDialog.OnTimeSetListener MealTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 
-        MealSPSave(SMealHour, SMealMinute);
-        SchSPSave(SSchHour, SSchMinute);
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            MealHour = hourOfDay;
+            MealMinute = minute;
+        }
+    };
+
+    private TimePickerDialog.OnTimeSetListener SchTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            SchHour = hourOfDay;
+            SchMinute = minute;
+        }
+    };
+
+
+    public void onBackPressed() {
+        MealSPSave(MealHour, MealMinute);
+        SchSPSave(SchHour, SchMinute);
         AlarmDaySPSave(AlarmDaySet);
         ServiceSetting();
         CheckSave();
         finish();
-
         Intent intent = new Intent(SettingActivity.this, MainActivity.class);
         startActivity(intent);
-        return true;
+        return;
     }
 
     public void getPreferences()
@@ -229,6 +249,7 @@ public class SettingActivity extends ActionBarActivity {
         {
             Log.d("SettingActivity", "서비스 시작");
             Intent intent = new Intent("com.seven.emsmeals.alarmservice");
+            intent.setPackage("com.seven.emsmeals");
             startService(intent);
 
         }
@@ -236,6 +257,7 @@ public class SettingActivity extends ActionBarActivity {
         {
             Log.d("SettingActivity","서비스 정지");
             Intent intent = new Intent("com.seven.emsmeals.alarmservice");
+            intent.setPackage("com.seven.emsmeals");
             stopService(intent);
         }
     }

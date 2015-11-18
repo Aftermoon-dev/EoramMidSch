@@ -87,7 +87,6 @@ public class MealAlarm extends BroadcastReceiver {
                             manager.notify(1, meala.build());
                         }
                     }
-                    Log.d("Alarm", "급식 없음");
                 }
             }
         }

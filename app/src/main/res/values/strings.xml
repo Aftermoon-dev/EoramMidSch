@@ -2,12 +2,10 @@
     <string name="app_name">어람중학교</string>
     <string name="title_activity_setting">설정</string>
     <string name="title_activity_time_table">시간표</string>
-    <string name="title_activity_hpview">학교 홈페이지</string>
     <string name="title_activity_time_table_set">시간표 설정</string>
 
     <string name="infoname">어람중학교 Application</string>
-    <string name="info">Made By 선민재 (30912)\n문의 : ddol0225@naver.com</string>
-    <string name="developing">준비중인 기능입니다.</string>
+    <string name="info">Made By 30912 선민재\n문의 : ddol0225@naver.com</string>
 
     <string name="monday">월요일</string>
     <string name="tuesday">화요일</string>
@@ -28,15 +26,10 @@
     <string name="notice">최근 공지사항</string>
 
     <string name="homepage">학교 홈페이지</string>
-    <string name="redown">데이터 재설정</string>
-    <string name="timetable">시간표 설정</string>
+    <string name="redown">데이터 초기화하기</string>
+    <string name="timetable">시간표</string>
     <string name="setting">설정</string>
     <string name="returnmain">돌아가기</string>
-
-    <string name="title_section1">메인</string>
-    <string name="title_section2">급식</string>
-    <string name="title_section3">학사일정</string>
-    <string name="title_section4">소개</string>
 
     <string name="download_start">새로운 급식과 학사정보 데이터를 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
     <string name="re_download_start">급식과 학사정보 데이터를 다시 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
@@ -53,5 +46,8 @@
 
     <string name="notime">시간표 설정 안됨</string>
     <string name="Al">* 알레르기 정보\n①난류 ②우유 ③메밀 ④땅콩 ⑤대두 ⑥밀 ⑦고등어 ⑧게 ⑨새우 ⑩돼지고기 ⑪복숭아 ⑫토마토 ⑬아황산염</string>
+
+    <string name="alarmon">알람 작동 설정</string>
+    <string name="alarmdate">알람 기준 설정</string>
 
 </resources>
