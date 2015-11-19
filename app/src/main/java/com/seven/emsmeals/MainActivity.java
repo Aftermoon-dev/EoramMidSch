@@ -70,28 +70,6 @@ public class MainActivity extends ActionBarActivity {
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
 
-
-        SharedPreferences mealchk = getSharedPreferences("mealchk", MODE_MULTI_PROCESS);
-        boolean MealChk = mealchk.getBoolean("mealchk", true);
-
-        SharedPreferences schchk = getSharedPreferences("schchk", MODE_MULTI_PROCESS);
-        boolean SchChk = schchk.getBoolean("schchk", true);
-
-        if(MealChk == true || SchChk == true)
-        {
-            Log.d("MainActivity", "알람 서비스 시작");
-            Intent intent = new Intent(this, AlarmService.class);
-            intent.setPackage("com.seven.emsmeals");
-            startService(intent);
-        }
-        else
-        {
-            Log.d("MainActivity","서비스 정지");
-            Intent intent = new Intent(this, AlarmService.class);
-            intent.setPackage("com.seven.emsmeals");
-            stopService(intent);
-        }
-
         // 급식 및 학사 일정 Download 등 처리
         Calendar cal = Calendar.getInstance();
         int month = cal.get ( cal.MONTH ) + 1 ;

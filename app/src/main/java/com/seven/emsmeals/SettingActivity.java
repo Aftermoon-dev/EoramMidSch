@@ -40,6 +40,7 @@ public class SettingActivity extends ActionBarActivity {
         CardView mealtimeset = (CardView) findViewById(R.id.MealTimeSet);
         CardView schtimeset = (CardView) findViewById(R.id.SchTimeSet);
         CardView timetableset = (CardView) findViewById(R.id.TimeTableSet);
+        CardView help = (CardView) findViewById(R.id.HelpCard);
 
         getPreferences();
 
@@ -62,6 +63,15 @@ public class SettingActivity extends ActionBarActivity {
             public void onClick(View v) {
                 finish();
                 Intent intent = new Intent(SettingActivity.this, TimeTableSet.class);
+                startActivity(intent);
+            }
+        });
+
+        help.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(SettingActivity.this, HelpActivity.class);
                 startActivity(intent);
             }
         });

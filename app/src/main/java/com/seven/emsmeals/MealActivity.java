@@ -65,7 +65,7 @@ public class MealActivity extends Fragment {
             try {
                 String wednesdaymeal = meals[days[3] - 1].lunch;
                 wednesday.setText(wednesdaymeal);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 wednesday.setText(NoMeal);
             }
 
@@ -97,6 +97,11 @@ public class MealActivity extends Fragment {
 
         for (int i=0; i<7; i++) {
             days[i] = day-(dw-1)+i;
+
+            if(days[i] > daymax)
+            {
+                days[i] = 0;
+            }
         }
 
         return days;

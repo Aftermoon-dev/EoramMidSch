@@ -16,7 +16,6 @@ import org.jsoup.nodes.Document;
 
 import java.util.Calendar;
 
-@SuppressLint("ValidFragment")
 public class SchActivity extends Fragment {
     public static Context mContext;
 
@@ -51,35 +50,35 @@ public class SchActivity extends Fragment {
             try {
                 String mondaysch = schs[days[1] - 1].schedule;
                 monday.setText(mondaysch);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 monday.setText(NoSch);
             }
 
             try {
                 String tuesdaysch = schs[days[2] - 1].schedule;
                 tuesday.setText(tuesdaysch);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 tuesday.setText(NoSch);
             }
 
             try {
                 String wednesdaysch = schs[days[3] - 1].schedule;
                 wednesday.setText(wednesdaysch);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 wednesday.setText(NoSch);
             }
 
             try {
                 String thursdaysch = schs[days[4] - 1].schedule;
                 thursday.setText(thursdaysch);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 thursday.setText(NoSch);
             }
 
             try {
                 String fridaysch = schs[days[5] - 1].schedule;
                 friday.setText(fridaysch);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 friday.setText(NoSch);
             }
         }
@@ -92,10 +91,17 @@ public class SchActivity extends Fragment {
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DATE);
         int dw = cal.get(Calendar.DAY_OF_WEEK);
+        int daymax = cal.getActualMaximum(Calendar.DATE);
+
         int[] days = new int[7];
 
         for (int i=0; i<7; i++) {
             days[i] = day-(dw-1)+i;
+
+            if(days[i] > daymax)
+            {
+                days[i] = 0;
+            }
         }
         return days;
     }
