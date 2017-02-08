@@ -7,8 +7,9 @@ android {
         applicationId "com.seven.emsmeals"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 270
-        versionName "2.7.0"
+        versionCode 275
+        versionName "2.7.5"
+        multiDexEnabled true
     }
     buildTypes {
         release {

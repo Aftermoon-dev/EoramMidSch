@@ -233,10 +233,10 @@ class DataThread extends Thread
 
         try {
 
-            Document sch = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03").get();
-            Document schnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03&ay=" + nextyear + "&mm=" + Snextmonth).get();
-            Document meal = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03").get();
-            Document mealnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03&ay=" + nextyear + "&mm=" + Snextmonth).get();
+            Document sch = Jsoup.connect("http://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03").get();
+            Document schnm = Jsoup.connect("http://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03&ay=" + nextyear + "&mm=" + Snextmonth).get();
+            Document meal = Jsoup.connect("http://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03").get();
+            Document mealnm = Jsoup.connect("http://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005475&schulCrseScCode=3&schulKndScCode=03&ay=" + nextyear + "&mm=" + Snextmonth).get();
             Log.d("Thread", "THIS YEAR : " + nowyear + "THIS MONTH : " + nowmonth);
             Log.d("Thread", "NEXT YEAR : " + nextyear + "NEXT MONTH : " + Snextmonth);
 

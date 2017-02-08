@@ -51,8 +51,8 @@ public class FirstActivity extends Fragment {
 
         if (schdb != "") {
             Document sch = Jsoup.parse(schdb);
-            ScheduleData[] schs = ScheduleDataParser.parse(sch);
             try {
+                ScheduleData[] schs = ScheduleDataParser.parse(sch);
                 String todaydata = schs[days - 1].schedule;
                 today.setText(todaydata);
             } catch (Exception e) {
@@ -74,8 +74,8 @@ public class FirstActivity extends Fragment {
 
         if (mealdb != "") {
             Document meal = Jsoup.parse(mealdb);
-            MenuData[] meals = MenuDataParser.parse(meal);
             try {
+                MenuData[] meals = MenuDataParser.parse(meal);
                 String todaydata = meals[days - 1].lunch;
                 today.setText(todaydata);
             } catch (Exception e) {
